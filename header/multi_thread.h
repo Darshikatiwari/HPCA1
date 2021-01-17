@@ -4,9 +4,10 @@
 #include <fstream>
 using namespace std;
  
- // Macros for time calculation
-#define TIME_DIFF(val, start, stop) std::chrono::duration_cast<val>(stop - start).count()
-#define TIME_NOW std::chrono::high_resolution_clock::now()
+ // Macros for time calculation(  used during profiling)
+
+//#define TIME_DIFF(val, start, stop) std::chrono::duration_cast<val>(stop - start).count()
+//#define TIME_NOW std::chrono::high_resolution_clock::now()
 
 
 //Mutexes for synchronization and mutual exclusion
@@ -110,8 +111,8 @@ void multiThread(int N, int *matA, int *matB, int *output)
     struct thd1 thread[THREAD_COUNT];  //structure array
     pthread_t tid[THREAD_COUNT];     //thread ID for every thread
 
-    //timing counters
-    auto begin = TIME_NOW;
+    //timing counters()
+    //auto begin = TIME_NOW; (used during testing)
 
     //thread creation and implementation
     for (int i =  0; i < THREAD_COUNT; i++)
@@ -126,7 +127,7 @@ void multiThread(int N, int *matA, int *matB, int *output)
     Exception_check = pthread_create(&tid[i], NULL,mult_threads, (void *)&thread[i]);
         
     }
-    auto end = TIME_NOW;
+    //auto end = TIME_NOW;
 
     //Exception Check
     if (Exception_check)
@@ -143,7 +144,7 @@ void multiThread(int N, int *matA, int *matB, int *output)
     }
     
     //Time display
-    cout << "Total runtime of threads: " << (double)TIME_DIFF(std::chrono::microseconds, begin, end) / 1000.0 ; 
+    //cout << "Total runtime of threads: " << (double)TIME_DIFF(std::chrono::microseconds, begin, end) / 1000.0 ; 
     
 
 
