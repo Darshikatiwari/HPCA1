@@ -3,9 +3,7 @@
 #include <fstream>
 using namespace std;
 
-//Macros for time calculation
-#define TIME_DIFF(val, start, stop) std::chrono::duration_cast<val>(stop - start).count()
-#define TIME_NOW std::chrono::high_resolution_clock::now()
+
 
 //transpose of matrix B
 void B_transpose(int *dst, const int *src, int n) noexcept 
@@ -38,9 +36,7 @@ void singleThread(int N, int *matA, int *matB, int *output)
 
     //transposed matrix B
     matB=dst;
-     
-    //time calculation
-    begin = TIME_NOW;
+    
 
     //DMM on the transposed matrix
     for(int i=0;i<N;i++)
@@ -50,11 +46,6 @@ void singleThread(int N, int *matA, int *matB, int *output)
             output[i+j]+=matA[i*N+j]*matB[(N-i-1)*N+j];
         }
     }
-    
-    end = TIME_NOW;
-    //Overall program time calculation
-    t_time=(double)TIME_DIFF(std::chrono::microseconds, begin, end) / 1000.0;
-    cout << "\nTime for executing singleThread: " << t_time;    
 
     
 }
