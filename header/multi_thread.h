@@ -41,7 +41,7 @@ void* mult_threads(void * thread_arg)
     int finish1 =((core+1)*global->N)/THREAD_COUNT;  
     step += 1;
 
-    pthread_mutex_unlock(&lock_b);
+    pthread_mutex_unlock(&lock_a);
 
     //auto begin = TIME_NOW;                                                      (used during profiling of every loop)
 
@@ -67,7 +67,7 @@ void* mult_threads(void * thread_arg)
     //begin = TIME_NOW;(used during profiling of everyloops)
 
     //synchronization by locks
-    pthread_mutex_lock(&lock_a);
+    pthread_mutex_lock(&lock_b);
 
     int core1 =step1;
     int start2 =(core1*global->N)/THREAD_COUNT + global->N;
