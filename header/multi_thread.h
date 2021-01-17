@@ -11,7 +11,7 @@ using namespace std;
 
 
 //Mutexes for synchronization and mutual exclusion
-#define THREAD_COUNT 16                                        //varied depending on the scalibilty of the program
+#define THREAD_COUNT 32                                        //varied depending on the scalibilty of the program
 
 
 pthread_mutex_t lock_a;
